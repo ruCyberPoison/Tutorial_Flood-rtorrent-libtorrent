@@ -295,6 +295,6 @@ Your NodeJS version must be over or equal than v8.x.x.
 `´root@seedbox:/home/flood/flood#` npm run build
 `´root@seedbox:/home/flood/flood#` npm start
 `´root@seedbox:/home/flood/flood#` cd ~/
-`´root@seedbox:~/#` chown flood:flood-R /home/flood
+`´root@seedbox:~/#` chown flood:flood -R /home/flood
 
 ```
