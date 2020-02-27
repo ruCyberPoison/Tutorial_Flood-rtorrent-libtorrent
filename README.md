@@ -79,7 +79,7 @@ Intro: Blue = text to input in command line
 
 ## Instance layout (base paths)
 method.insert = cfg.basedir,  private|const|string, (cat,"/home/rtorrent/")
-method.insert = cfg.download, private|const|string, (cat,(cfg.basedir),"downloads/")
+method.insert = cfg.download, private|const|string, (cat,"/mnt/incomplete/downloads/")
 method.insert = cfg.logs,     private|const|string, (cat,(cfg.basedir),"log/")
 method.insert = cfg.logfile,  private|const|string, (cat,(cfg.logs),"rtorrent-",(system.time),".log")
 method.insert = cfg.session,  private|const|string, (cat,(cfg.basedir),"temp/")
@@ -146,7 +146,7 @@ execute.nothrow = sh, -c, (cat, "echo >",\
 
 ## Other operational settings (check & adapt)
 encoding.add = utf8
-system.umask.set = 0027
+system.umask.set = 0000
 system.cwd.set = (directory.default)
 network.http.dns_cache_timeout.set = 25
 schedule2 = monitor_diskspace, 15, 60, ((close_low_diskspace, 1000M))
@@ -177,7 +177,7 @@ schedule2 = watch_start, 10, 10, ((load.start_verbose, (cat, (cfg.watch), "start
 
 ## Run the rTorrent process as a daemon in the background
 ## (and control via XMLRPC sockets)
-#system.daemon.set = true
+system.daemon.set = true
 #network.scgi.open_local = (cat,(session.path),rpc.socket)
 #execute.nothrow = chmod,770,(cat,(session.path),rpc.socket)
 
@@ -191,9 +191,10 @@ log.add_output = "info", "log"
 #log.add_output = "tracker_debug", "log"
 
 ###SCGI port for Flood
-scgi_port = 127.0.0.1:5000
+scgi_port = 0.0.0.0:5000
 
 ### END of rtorrent.rc ###
+
 ````
 
 *Please edit if required !!**
